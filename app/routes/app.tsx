@@ -1,4 +1,4 @@
-import { authenticator } from "~/services/auth.server";
+import { authenticator } from "~/services/auth.client";
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { AppShell, Burger, Group, NavLink, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -35,7 +35,7 @@ export const meta: MetaFunction = () => {
 };
 
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const clientLoader = async ({ request }: LoaderFunctionArgs) => {
     await authenticator.isAuthenticated(request, { failureRedirect: "/login" });
 
     return null;

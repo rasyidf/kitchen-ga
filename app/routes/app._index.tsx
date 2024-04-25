@@ -5,7 +5,7 @@ import { PersonelNames } from "~/constants/Personel";
 import { shiftTaskName } from "~/services/engine/types";
 
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const clientLoader = async ({ request }: LoaderFunctionArgs) => {
     return json({
         stats: [
             { title: "Total Personel", value: PersonelNames.length },
@@ -18,7 +18,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 
 export default function Index() {
-    const { stats } = useLoaderData<typeof loader>();
+    const { stats } = useLoaderData<typeof clientLoader>();
     return (<>
         <Title order={1}>Selamat Datang</Title>
         <p>

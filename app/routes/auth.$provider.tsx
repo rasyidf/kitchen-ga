@@ -1,13 +1,13 @@
-import { redirect } from "@remix-run/node"
-import type { ActionFunctionArgs } from "@remix-run/node"
-import { authenticator } from '~/services/auth.server';
-import type { AuthStrategy } from "~/services/auth.server";
+import { redirect } from "@remix-run/node";
+import type { ActionFunctionArgs } from "@remix-run/node";
+import { authenticator } from '~/services/auth.client';
+import type { AuthStrategy } from "~/services/auth.client";
 
-export const loader = () => redirect('/login');
+export const clientLoader = () => redirect('/login');
 
-export const action = async ({ request, params }: ActionFunctionArgs) => {
+export const clientAction = async ({ request, params }: ActionFunctionArgs) => {
   // If the provider is not specified, redirect to the login page
-  if(!params.provider) return redirect('/login');
+  if (!params.provider) return redirect('/login');
 
   const provider = params.provider as AuthStrategy;
 

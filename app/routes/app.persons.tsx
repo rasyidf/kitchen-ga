@@ -10,7 +10,7 @@ import { PersonelNames } from "~/constants/Personel";
 
 
 
-export const loader = async ({ request }: LoaderFunctionArgs) => {
+export const clientLoader = async ({ request }: LoaderFunctionArgs) => {
     const searchParams = new URLSearchParams(request.url.split("?")[1]);
     const page = searchParams.get("page") ?? undefined;
     const pageSize = searchParams.get("size") ?? 10;
@@ -64,7 +64,7 @@ export default function Index() {
         columnSizing: {} as ColumnSizingState,
     } as TableState);
 
-    const { data } = useLoaderData<typeof loader>();
+    const { data } = useLoaderData<typeof clientLoader>();
 
     const navigate = useNavigate();
 
