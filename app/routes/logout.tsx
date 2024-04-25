@@ -1,6 +1,6 @@
 import type { ActionFunctionArgs } from "@remix-run/node"
-import { authenticator } from "~/services/auth.client";
+import { authenticator } from "~/services/auth.server";
 
-export const clientAction = async ({ request }: ActionFunctionArgs) => {
+export const action = async ({ request }: ActionFunctionArgs) => {
   await authenticator.logout(request, { redirectTo: "/" });
 };

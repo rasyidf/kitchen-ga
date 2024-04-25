@@ -5,7 +5,7 @@ import { PersonelNames } from "~/constants/Personel";
 import { shiftTaskName } from "~/services/engine/types";
 
 
-export const clientLoader = async ({ request }: LoaderFunctionArgs) => {
+export const loader = async ({ request }: LoaderFunctionArgs) => {
     return json({
         stats: [
             { title: "Total Personel", value: PersonelNames.length },
@@ -18,7 +18,7 @@ export const clientLoader = async ({ request }: LoaderFunctionArgs) => {
 
 
 export default function Index() {
-    const { stats } = useLoaderData<typeof clientLoader>();
+    const { stats } = useLoaderData<typeof loader>();
     return (<>
         <Title order={1}>Selamat Datang</Title>
         <p>
@@ -27,7 +27,7 @@ export default function Index() {
         <SimpleGrid cols={{ md: 3 }}>
             {/* Stats, Person and Tasks */}
             {
-                stats.map((stat, index) => (
+                stats.map((stat: any) => (
                     <Paper withBorder p="md" key={stat.title}>
                         <Title order={1}>{stat.value}</Title>
                         <Text c="gray">{stat.title}</Text>

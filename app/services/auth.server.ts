@@ -1,5 +1,5 @@
 import { Authenticator } from "remix-auth";
-import { sessionStorage } from "~/services/session.client";
+import { sessionStorage } from "~/services/session.server";
 import { AuthStrategies } from "~/services/auth_strategies";
 import { formStrategy } from "./auth_strategies/form.strategy";
 

@@ -8,7 +8,6 @@ installGlobals();
 
 export default defineConfig({
   plugins: [remix({
-    ssr: false,
     presets: [vercelPreset()]
   }), tsconfigPaths()],
   envPrefix: "MIX_",
