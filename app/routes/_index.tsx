@@ -12,13 +12,14 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <Container mt={200} >
-      <Title order={1}>Welcome to the Kitchen Scheduler App</Title>
+      <Title order={1}>
+        Selamat datang di Aplikasi Penjadwalan Shift Dapur
+      </Title>
       <p>
-        This is a genetic algorithm scheduler for kitchen staff. The scheduler
-        will optimize the weekly schedule for kitchen staff based on the
-        availability of staff and the requirements of the kitchen.
+        Aplikasi ini membantu Anda dalam menentukan jadwal shift karyawan dapur
+        dengan mudah dan cepat.
       </p>
-      <Button component={NavLink} to="/engine">Engine</Button>
+      <Button component={NavLink} to="/app/">Mulai</Button>
     </Container>
   );
 }
