@@ -1,21 +1,22 @@
-import { authenticator } from "~/services/auth.server";
-import type { LoaderFunctionArgs } from "@remix-run/node";
-import { AppShell, Burger, Group, NavLink, Title } from "@mantine/core";
+import { AppShell, Burger, Group, Image, NavLink, Title } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import type { LoaderFunctionArgs } from "@remix-run/node";
 import { MetaFunction } from "@remix-run/node";
-import { Form, Link, Outlet } from "@remix-run/react";
+import { Form, Link, Outlet, useLocation } from "@remix-run/react";
+
+import classes from '../styles/app.module.scss';
 
 
 const NavItems = [{
-    title: 'Home',
+    title: 'Dashboard',
     to: '/app/'
 }, {
     title: 'Data',
     children: [{
-        title: 'Persons',
+        title: 'Personil',
         to: '/app/persons'
     }, {
-        title: 'Tasks',
+        title: 'Tugas',
         to: '/app/tasks'
     }]
 }, {
@@ -23,13 +24,13 @@ const NavItems = [{
     to: '/app/generator'
 },
 {
-    title: 'Report',
+    title: 'Laporan',
     to: '/app/report'
 }];
 
 export const meta: MetaFunction = () => {
     return [
-        { title: 'Piket Dapur GA' },
+        { title: 'Subsi Sibindenma Wattar AAU' },
         { name: 'description', content: 'Atur Jadwal Piket Dapur dengan Mudah' },
     ];
 };
@@ -41,33 +42,44 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 
 export default function Layout() {
-
+    const { pathname } = useLocation();
     const [opened, { toggle }] = useDisclosure();
     return (
         <AppShell
             header={{ height: 60 }}
-            navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
+            navbar={{ width: 300,  breakpoint: 'sm', collapsed: { mobile: !opened } }}
             padding="md"
+            withBorder={false}
+            layout="alt"
         >
-            <AppShell.Header>
+            <AppShell.Header bg="blue.7" c="white">
                 <Group h="100%" px="md">
                     <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-                    <Title order={4}>Piket Dapur GA</Title>
+                    <Title order={4}>Subsi Sibindenma Wattar AAU</Title>
                 </Group>
 
             </AppShell.Header>
-            <AppShell.Navbar p="md">
+            <AppShell.Navbar p="md" bg="blue.6" c="white">
+                <AppShell.Section>
+                    <Image src="/logo.png" alt="Dapur GA" w={86} mb="lg" />
+                </AppShell.Section>
                 <AppShell.Section grow>
                     {NavItems.map((item) => (
                         item.children ? (
-                            <NavLink key={item.title} label={item.title}>
+                            <NavLink classNames={{
+                                root: classes.link,
+                            }} key={item.title} label={item.title} opened>
                                 {item.children?.map((child) => (
-                                    <NavLink key={child.title} label={child.title} component={Link} to={child.to} />
+                                    <NavLink classNames={{
+                                        root: classes.link,
+                                    }} key={child.title} label={child.title} active={pathname.endsWith(child.to)}
+                                        component={Link} to={child.to} />
                                 ))}
-
                             </NavLink>
                         ) : (
-                            <NavLink key={item.title} label={item.title} component={Link} to={item.to} />
+                            <NavLink classNames={{
+                                root: classes.link,
+                            }} key={item.title} label={item.title} component={Link} active={pathname.endsWith(item.to)} to={item.to} />
                         )
                     ))}</AppShell.Section>
 
@@ -77,7 +89,7 @@ export default function Layout() {
                     </Form>
                 </AppShell.Section>
             </AppShell.Navbar>
-            <AppShell.Main>
+            <AppShell.Main bg="blue.0">
                 <Outlet />
             </AppShell.Main>
         </AppShell>

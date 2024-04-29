@@ -75,7 +75,7 @@ export default function Index() {
     }, [state]);
 
     return (
-        <Paper>
+        <Paper bg="transparent">
             <PageHeader title="Personel" subtitle="Kelola Personel yang terdaftar di sistem" />
             <Box mt={16}>
                 <DataTable data={data} columns={columns} state={state} setState={setState} />

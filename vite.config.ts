@@ -8,7 +8,15 @@ installGlobals();
 
 export default defineConfig({
   plugins: [remix({
+    ignoredRouteFiles: [".scss"],
     presets: [vercelPreset()]
   }), tsconfigPaths()],
   envPrefix: "MIX_",
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "./app/_mantine";`,
+      },
+    },
+  },
 });

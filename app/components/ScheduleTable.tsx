@@ -1,4 +1,6 @@
 import { Button, Grid, Group, List, ScrollArea, SimpleGrid, Stack, Table, Tabs, Text } from "@mantine/core";
+import { FileIcon } from "@radix-ui/react-icons";
+import { useNavigate } from "@remix-run/react";
 import { useState } from "react";
 import { PersonelNames } from "~/constants/Personel";
 import { Individual, Personel, ShiftTask, shiftTaskName } from "~/services/engine/types";
@@ -6,6 +8,7 @@ const dayName = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
 export const ScheduleTable = ({ population }: { population: Individual[]; }) => {
   const [selectedPopulation, setSelectedPopulation] = useState(0);
 
+  const navigate = useNavigate();
   const selectedPop = population[selectedPopulation];
   const selectedShiftLen = selectedPop?.weeklySchedule?.[0].shifts.length ?? 0;
   return (<Grid>
@@ -35,32 +38,40 @@ export const ScheduleTable = ({ population }: { population: Individual[]; }) => 
         {
           selectedPop && (
             <Tabs defaultValue="0" w="100%">
-              <Tabs.List>
-                {Array.from({ length: selectedShiftLen }).map((_, i) => (
-                  <Tabs.Tab key={i} value={i.toString()} >
-                    Sesi {i + 1}
-                  </Tabs.Tab>
-                ))}
-              </Tabs.List>
+              <Group justify="space-between" mr="md">
+                <Tabs.List style={{ flex: 1 }}>
+                  {Array.from({ length: selectedShiftLen }).map((_, i) => (
+                    <Tabs.Tab py="lg" key={i} value={i.toString()} >
+                      Sesi {i + 1}
+                    </Tabs.Tab>
+                  ))}
 
+                </Tabs.List>
+                <Button leftSection={<FileIcon />} onClick={() => {
+                  localStorage.setItem('selectedPopulation', JSON.stringify(selectedPop));
+                  navigate('/app/report');
+                }}>
+                  Pilih lalu Cetak
+                </Button>
+              </Group>
               {
                 Array.from({ length: selectedShiftLen }).map((_, i) => (
                   <Tabs.Panel key={i} value={i.toString()} >
                     <Table>
-                      <thead>
-                        <tr>
+                      <Table.Thead>
+                        <Table.Tr>
                           {
                             dayName.map((day, i) => (
-                              <th key={i}>{day}</th>
+                              <Table.Th key={i}>{day}</Table.Th>
                             ))
                           }
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
+                        </Table.Tr>
+                      </Table.Thead>
+                      <Table.Tbody>
+                        <Table.Tr>
                           {
                             selectedPop?.weeklySchedule?.map((day, x) => (
-                              <td key={x}>
+                              <Table.Td key={x}>
                                 <Stack>
                                   {
                                     day.shifts?.[i]?.personels?.map((personel: Personel, j) => (
@@ -75,11 +86,11 @@ export const ScheduleTable = ({ population }: { population: Individual[]; }) => 
                                     ))
                                   }
                                 </Stack>
-                              </td>
+                              </Table.Td>
                             ))
                           }
-                        </tr>
-                      </tbody>
+                        </Table.Tr>
+                      </Table.Tbody>
                     </Table>
                   </Tabs.Panel>
                 ))

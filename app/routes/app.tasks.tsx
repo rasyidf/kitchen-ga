@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { PageHeader } from "~/components/PageHeader";
 import { columns } from "~/components/modules/tasks/columns";
 import { DataTable } from "~/components/ui/data-table";
-import { PersonelNames } from "~/constants/Personel";
 import { ShiftTask, shiftTaskName } from "~/services/engine/types";
 
 
@@ -81,7 +80,7 @@ export default function Index() {
     }, [state]);
 
     return (
-        <Paper>
+        <Paper bg="transparent">
             <PageHeader title="Tugas" subtitle="Kelola Tugas yang terdaftar di sistem" />
             <Box mt={16}>
                 <DataTable data={data} columns={columns} state={state} setState={setState} />

@@ -8,8 +8,8 @@ import { GAEngine } from "~/services/engine/ga"; // Import your GA classes
 import { Individual } from "~/services/engine/types";
 
 const gaEngine = new GAEngine(0.5, 0.1); // Example crossover and mutation rates
-const initialPopulationSize = 20;
-const initialTotalGenerations = 20;
+const initialPopulationSize = 100;
+const initialTotalGenerations = 30;
 const populationManager = new PopulationManager(
   shiftEntries,
   2,
