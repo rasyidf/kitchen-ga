@@ -36,10 +36,10 @@ export default function Index() {
       {
         Array.from({ length: selectedPopulation?.weeklySchedule?.[0]?.shifts?.length ?? 1 }).map((_, i) => (
           <>
-            <h3 style={{ textAlign: 'center' }}>
+            <h3 style={{ textAlign: 'center', paddingTop: 24  }}>
               Jadwal Piket Dapur Subsi Sibindenma Wattar AAU
             </h3>
-            <h4 style={{ textAlign: 'center', paddingTop: 16 }}>
+            <h4 style={{ textAlign: 'center'}}>
               Sesi {i + 1} : {ShiftData[i].startTime} - {ShiftData[i].endTime}
             </h4>
 
