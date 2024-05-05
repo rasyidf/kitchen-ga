@@ -6,24 +6,8 @@ import { useEffect, useState } from "react";
 import { PageHeader } from "~/components/PageHeader";
 import { columns } from "~/components/modules/shifts/columns";
 import { DataTable } from "~/components/ui/data-table";
+import { ShiftData } from "~/constants/shiftData";
 
-const ShiftData = [
-    {
-        id: 1,
-        startTime: "06:00",
-        endTime: "10:00",
-    },
-    {
-        id: 2,
-        startTime: "11:00",
-        endTime: "15:00",
-    },
-    {
-        id: 3,
-        startTime: "16:00",
-        endTime: "20:00",
-    },
-];
 
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
     // get search params

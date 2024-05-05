@@ -27,9 +27,14 @@ export default function Index() {
 
             <Button mt="md" disabled={selectedPopulation === null}
                 onClick={() => {
-                    alert('Mohon maaf fitur belum didukung')
+                    // create a new window popup to print
+                    const win = window.open('/print', '_blank');
+                    if (win) {
+                        win.focus();
+                    }
+
                 }}
-            
+
             >
                 Cetak Laporan
             </Button>

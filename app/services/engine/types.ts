@@ -39,3 +39,5 @@ export const shiftTaskName: Record<ShiftTask, string> = {
     pembuatBumbu: "Pembuat Bumbu",
     pelayan: "Pelayan"
 };
+
+export const dayName = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];

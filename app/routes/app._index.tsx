@@ -10,7 +10,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
         stats: [
             { title: "Total Personel", value: PersonelNames.length },
             { title: "Total Tugas", value: Object.keys(shiftTaskName).length },
-            { title: "Varian Jadwal", value: 3 }
+            { title: "Jumlah Sesi", value: 3 }
         ]
     });
 };

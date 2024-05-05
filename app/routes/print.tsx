@@ -1,8 +1,11 @@
-import { Table } from "@mantine/core";
+import { Stack, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
+import { PersonelNames } from "~/constants/Personel";
+import { ShiftData } from "~/constants/shiftData";
 import { convertToTable } from "~/services/engine/tableGenerator";
-import { Individual } from "~/services/engine/types";
+import { Individual, Personel, dayName, shiftTaskName } from "~/services/engine/types";
 
+import "~/styles/print.scss";
 
 
 
@@ -13,63 +16,73 @@ export default function Index() {
   useEffect(() => {
     document.title = "Jadwal Piket Dapur Subsi Sibindenma Wattar AAU";
 
-    const selectedPopulation = localStorage.getItem('selectedPopulation');
-    if (selectedPopulation === null) {
+    const cachedPops = localStorage.getItem('selectedPopulation');
+    if (cachedPops === null) {
       alert("Anda belum memilih jadwal piket dapur. Silahkan pilih jadwal terlebih dahulu.");
     }
 
-    setSelectedPopulation(selectedPopulation ? JSON.parse(selectedPopulation) : null);
+    setSelectedPopulation(cachedPops ? JSON.parse(cachedPops) : null);
 
-    if (selectedPopulation === null) {
-      return;
+    if (selectedPopulation && selectedPopulation?.weeklySchedule?.length > 0) {
+      window.print();
     }
-    window.print();
 
   }, []);
 
   return (
     <>
-      <h1>
-        Jadwal Piket Dapur Subsi Sibindenma Wattar AAU
-      </h1>
 
-      <pre>
-        {
-          JSON.stringify(convertToTable(selectedPopulation?.weeklySchedule ?? []), null, 2)
-        }
-      </pre>
 
-      <Table>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Jam</Table.Th>
-            <Table.Th>Tugas</Table.Th>
-            <Table.Th>Senin</Table.Th>
-            <Table.Th>Selasa</Table.Th>
-            <Table.Th>Rabu</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-        </Table.Tbody>
-      </Table>
+      {
+        Array.from({ length: selectedPopulation?.weeklySchedule?.[0]?.shifts?.length ?? 1 }).map((_, i) => (
+          <>
+            <h3 style={{ textAlign: 'center' }}>
+              Jadwal Piket Dapur Subsi Sibindenma Wattar AAU
+            </h3>
+            <h4 style={{ textAlign: 'center', paddingTop: 16 }}>
+              Sesi {i + 1} : {ShiftData[i].startTime} - {ShiftData[i].endTime}
+            </h4>
 
-      <div style={{ pageBreakAfter: 'always' }} />
-      <Table>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Jam</Table.Th>
-            <Table.Th>Tugas</Table.Th>
-            <Table.Th>Kamis</Table.Th>
-            <Table.Th>Jumat</Table.Th>
-            <Table.Th>Sabtu</Table.Th>
-            <Table.Th>Minggu</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          <Table.Tr>
-          </Table.Tr>
-        </Table.Tbody>
-      </Table>
+            <Table key={i} withTableBorder withColumnBorders withRowBorders>
+              <Table.Thead>
+                <Table.Tr>
+                  {
+                    dayName.map((day, i) => (
+                      <Table.Th key={i}>{day}</Table.Th>
+                    ))
+                  }
+                </Table.Tr>
+              </Table.Thead>
+              <Table.Tbody>
+                <Table.Tr>
+                  {
+                    selectedPopulation?.weeklySchedule?.map((day, x) => (
+                      <Table.Td key={x}>
+                        <Stack>
+                          {
+                            day.shifts?.[i]?.personels?.map((personel: Personel, j) => (
+                              <div key={j}>
+                                <Text >
+                                  {PersonelNames[personel?.id - 1]?.name ?? ' '}
+                                </Text>
+                                <Text c="gray"  >
+                                  {shiftTaskName[personel?.task]}
+                                </Text>
+                              </div>
+                            ))
+                          }
+                        </Stack>
+                      </Table.Td>
+                    ))
+                  }
+                </Table.Tr>
+              </Table.Tbody>
+            </Table>
+
+            <div style={{ pageBreakAfter: 'always' }} />
+          </>
+        ))
+      }
 
     </>
   );

@@ -3,8 +3,7 @@ import { FileIcon } from "@radix-ui/react-icons";
 import { useNavigate } from "@remix-run/react";
 import { useState } from "react";
 import { PersonelNames } from "~/constants/Personel";
-import { Individual, Personel, ShiftTask, shiftTaskName } from "~/services/engine/types";
-const dayName = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"];
+import { Individual, Personel, ShiftTask, dayName, shiftTaskName } from "~/services/engine/types";
 export const ScheduleTable = ({ population }: { population: Individual[]; }) => {
   const [selectedPopulation, setSelectedPopulation] = useState(0);
 

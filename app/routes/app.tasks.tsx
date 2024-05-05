@@ -1,6 +1,6 @@
-import { Box, Button, Paper } from "@mantine/core";
+import { Box, Button, Drawer, Paper } from "@mantine/core";
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
-import { useLoaderData, useNavigate } from "@remix-run/react";
+import { Outlet, useLoaderData, useLocation, useNavigate, useParams } from "@remix-run/react";
 import { ColumnFiltersState, ColumnSizingState, RowSelectionState, SortingState, TableState } from "@tanstack/react-table";
 import { useEffect, useState } from "react";
 import { PageHeader } from "~/components/PageHeader";
@@ -71,7 +71,11 @@ export default function Index() {
 
     const { data } = useLoaderData<typeof loader>();
 
+    const { mode } = useParams();
+
     const navigate = useNavigate();
+
+    const { pathname } = useLocation();
 
     useEffect(() => {
         if (state && state.pagination.pageIndex >= 0 && state.pagination.pageIndex <= (data.meta.pageCount ?? 10)) {
@@ -85,7 +89,7 @@ export default function Index() {
 
                 <Button
                     onClick={() => {
-                        alert('Mohon maaf fitur belum didukung');
+                        navigate("/app/tasks/create?page=1", { replace: true });
                     }}
                 >
                     Tambah Tugas
@@ -94,6 +98,13 @@ export default function Index() {
             <Box mt={16}>
                 <DataTable data={data} columns={columns} state={state} setState={setState} />
             </Box>
+            <Drawer position="right"
+                opened={["create", "edit"].includes(mode ?? "")}
+                onClose={() => { navigate("/app/tasks?page=1"); }} title={
+                    pathname.indexOf('/create') > -1 ? "Tambah Tugas" : "Edit Tugas"
+                }>
+                <Outlet />
+            </Drawer>
         </Paper>
     );
 }
