@@ -1,4 +1,4 @@
-import { Individual, DailyShift, Personel } from "./types";
+import { DailyShift, Individual } from "./types";
 
 export class GAEngine {
     mutationRate: number;
@@ -9,9 +9,15 @@ export class GAEngine {
     }
 
     selectParents(population: Individual[]): Individual[] {
-        return [...population].sort((a, b) => (b.fitness || 0) - (a.fitness || 0)).slice(0, population.length * 0.1);
+        return [...population].sort((a, b) => (b.fitness || 0) - (a.fitness || 0)).slice(0, population.length * this.mutationRate);
     }
 
+    /**
+     * Performs crossover operation between two parent individuals.
+     * @param parent1 - The first parent individual.
+     * @param parent2 - The second parent individual.
+     * @returns The child individual resulting from the crossover operation.
+     */
     crossover(parent1: Individual, parent2: Individual): Individual {
         const childSchedule = parent1.weeklySchedule.map((day, dayIndex) => ({
             shifts: day.shifts.map((shift, shiftIndex) => Math.random() < this.crossoverRate
@@ -21,11 +27,21 @@ export class GAEngine {
         return { weeklySchedule: childSchedule };
     }
 
-    mutate(individual: Individual, shiftEntries: DailyShift[], mutationRate: number): Individual {
+    /***
+     * Mutation operation for a single individual
+     * 
+     * @param individual: Individual
+     * @param shiftEntries: DailyShift[]
+     * @param mutationRate: number
+     * 
+     * @returns Individual
+     * 
+     **/
+    mutate(individual: Individual, shiftEntries: DailyShift[]): Individual {
         const mutatedSchedule = individual.weeklySchedule.map((day, dayIndex) => ({
             shifts: day.shifts.map((shift, shiftIndex) => {
                 // Check if mutation should occur based on mutation rate
-                if (Math.random() < mutationRate) {
+                if (Math.random() < this.mutationRate) {
                     return this.mutationOperation(individual, shiftEntries, dayIndex, shiftIndex);
                 } else {
                     return shift; // No mutation

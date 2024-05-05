@@ -83,7 +83,7 @@ export class PopulationManager {
         for (let i = 0; i < numOffspring; i++) {
             const [parent1, parent2] = this.selectTwoParents(parents);
             const child = this.gaEngine.crossover(parent1, parent2);
-            const mutatedChild = this.gaEngine.mutate(child, child.weeklySchedule?.[0].shifts, this.gaEngine.mutationRate);
+            const mutatedChild = this.gaEngine.mutate(child, child.weeklySchedule?.[0].shifts);
             newPopulation.push(mutatedChild);
         }
 
@@ -102,9 +102,10 @@ export class PopulationManager {
         const penaltyWeight = 2.381 * 15; // Scale penalty weight
 
         individual.weeklySchedule.forEach((dailySchedule) => {
-            const tasksAssigned = new Set<string>(); // Using a set to store unique tasks for each day
 
             dailySchedule.shifts.forEach(shift => {
+                const tasksAssigned = new Set<string>(); // Using a set to store unique tasks for each day
+
                 shift.personels.forEach(personel => {
                     if (personel.job.includes(personel.task)) {
                         // Reward if task is within personel's job
@@ -140,8 +141,4 @@ export class PopulationManager {
         return [parents[idx1], parents[idx2]];
     }
 
-
-    private getSpecificShift(task: string): Personel {
-        return this.shiftEntries.find((personel) => personel.task === task) as Personel;
-    }
 }

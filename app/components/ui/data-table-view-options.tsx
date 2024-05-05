@@ -1,4 +1,3 @@
-"use client";
 
 import { Button, Checkbox, Menu, Stack, Text } from "@mantine/core";
 import { SliderIcon } from "@radix-ui/react-icons";

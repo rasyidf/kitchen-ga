@@ -1,4 +1,4 @@
-import { Box, Paper } from "@mantine/core";
+import { Box, Button, Paper } from "@mantine/core";
 import { json, redirect, type LoaderFunctionArgs } from "@remix-run/node";
 import { useLoaderData, useNavigate } from "@remix-run/react";
 import { ColumnFiltersState, ColumnSizingState, RowSelectionState, SortingState, TableState } from "@tanstack/react-table";
@@ -81,7 +81,16 @@ export default function Index() {
 
     return (
         <Paper bg="transparent">
-            <PageHeader title="Tugas" subtitle="Kelola Tugas yang terdaftar di sistem" />
+            <PageHeader title="Tugas" subtitle="Kelola Tugas yang terdaftar di sistem">
+
+                <Button
+                    onClick={() => {
+                        alert('Mohon maaf fitur belum didukung');
+                    }}
+                >
+                    Tambah Tugas
+                </Button>
+            </PageHeader>
             <Box mt={16}>
                 <DataTable data={data} columns={columns} state={state} setState={setState} />
             </Box>

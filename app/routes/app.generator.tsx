@@ -12,7 +12,7 @@ const initialPopulationSize = 100;
 const initialTotalGenerations = 30;
 const populationManager = new PopulationManager(
   shiftEntries,
-  2,
+  3,
   gaEngine
 );
 

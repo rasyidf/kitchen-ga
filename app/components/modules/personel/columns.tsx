@@ -1,11 +1,10 @@
-"use client";
 
 import { ColumnDef } from "@tanstack/react-table";
 
 import { Text } from "@mantine/core";
 import { Personel } from "~/constants/Personel";
-import { DataTableRowActions } from "./data-table-row-actions";
 import { DataTableColumnHeader } from "../../ui/data-table-column-header";
+import { DataTableRowActions } from "./data-table-row-actions";
 
 export const columns: ColumnDef<Personel>[] = [
   {

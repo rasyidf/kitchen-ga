@@ -18,7 +18,7 @@ export default function Index() {
         <Image src="/logo.png" alt="Kitchen Scheduler App" w={200} />
       </Center>
       <Paper bg="blue.7" p="lg" c="white" >
-        <Container  >
+        <Container my="xl" >
           <Title order={1}>
             Subsi Sibindenma Wattar AAU
           </Title>

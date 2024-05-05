@@ -1,9 +1,8 @@
-"use client";
 
 import { Row } from "@tanstack/react-table";
 
-import { ActionIcon, Button, Group, Menu, Tooltip } from "@mantine/core";
-import { DotsHorizontalIcon, Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { ActionIcon } from "@mantine/core";
+import { Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;

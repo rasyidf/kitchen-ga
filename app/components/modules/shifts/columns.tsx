@@ -7,27 +7,27 @@ import { DataTableRowActions } from "./data-table-row-actions";
 
 export const columns: ColumnDef<{
   id: number;
-  title: string;
-  status: string;
+  startTime: string;
+  endTime: string;
 }>[] = [
   {
     accessorKey: "id",
     minSize: 80,
     size: 80,
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Task" />,
-    cell: ({ row }) => <Text>{`${row.getValue("id")}`}</Text>,
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Id" />,
+    cell: ({ row }) => <Text>{`Shift ${row.getValue("id")}`}</Text>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "title",
+    accessorKey: "startTime",
     size: 0.7,
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Title" />,
+    header: ({ column }) => <DataTableColumnHeader column={column} title="Start Time" />,
   },
   {
-    accessorKey: "status",
+    accessorKey: "endTime",
     size: 64,
-    header: ({ column }) => <DataTableColumnHeader column={column} title="Status" />,
+    header: ({ column }) => <DataTableColumnHeader column={column} title="End Time" />,
   },
 
   {

@@ -18,7 +18,10 @@ const NavItems = [{
     }, {
         title: 'Tugas',
         to: '/app/tasks'
-    }]
+    }, {
+        title: 'Shift',
+        to: '/app/shifts'
+    },]
 }, {
     title: 'Generator',
     to: '/app/generator'
@@ -47,7 +50,7 @@ export default function Layout() {
     return (
         <AppShell
             header={{ height: 60 }}
-            navbar={{ width: 300,  breakpoint: 'sm', collapsed: { mobile: !opened } }}
+            navbar={{ width: 300, breakpoint: 'sm', collapsed: { mobile: !opened } }}
             padding="md"
             withBorder={false}
             layout="alt"

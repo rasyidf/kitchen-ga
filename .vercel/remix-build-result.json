@@ -1,0 +1,224 @@
+{
+  "buildManifest": {
+    "serverBundles": {
+      "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0": {
+        "id": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+        "file": "build/server/nodejs-eyJydW50aW1lIjoibm9kZWpzIn0/index.js",
+        "config": {
+          "runtime": "nodejs"
+        }
+      }
+    },
+    "routeIdToServerBundleId": {
+      "routes/app.shifts.$mode": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app.generator": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app.persons": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app._index": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app.report": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app.shifts": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/app.tasks": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/_index": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/logout": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0",
+      "routes/print": "nodejs-eyJydW50aW1lIjoibm9kZWpzIn0"
+    },
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "app/root.tsx",
+        "config": {}
+      },
+      "routes/app.shifts.$mode": {
+        "file": "app/routes/app.shifts.$mode.tsx",
+        "id": "routes/app.shifts.$mode",
+        "path": ":mode",
+        "parentId": "routes/app.shifts",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app.generator": {
+        "file": "app/routes/app.generator.tsx",
+        "id": "routes/app.generator",
+        "path": "generator",
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app.persons": {
+        "file": "app/routes/app.persons.tsx",
+        "id": "routes/app.persons",
+        "path": "persons",
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app._index": {
+        "file": "app/routes/app._index.tsx",
+        "id": "routes/app._index",
+        "index": true,
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app.report": {
+        "file": "app/routes/app.report.tsx",
+        "id": "routes/app.report",
+        "path": "report",
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app.shifts": {
+        "file": "app/routes/app.shifts.tsx",
+        "id": "routes/app.shifts",
+        "path": "shifts",
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app.tasks": {
+        "file": "app/routes/app.tasks.tsx",
+        "id": "routes/app.tasks",
+        "path": "tasks",
+        "parentId": "routes/app",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/_index": {
+        "file": "app/routes/_index.tsx",
+        "id": "routes/_index",
+        "index": true,
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/logout": {
+        "file": "app/routes/logout.tsx",
+        "id": "routes/logout",
+        "path": "logout",
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/print": {
+        "file": "app/routes/print.tsx",
+        "id": "routes/print",
+        "path": "print",
+        "parentId": "root",
+        "config": {
+          "runtime": "nodejs"
+        }
+      },
+      "routes/app": {
+        "file": "app/routes/app.tsx",
+        "id": "routes/app",
+        "path": "app",
+        "parentId": "root",
+        "config": {}
+      }
+    }
+  },
+  "remixConfig": {
+    "appDirectory": "/home/syid/dev/sandbox/kitchen-ga/app",
+    "basename": "/",
+    "buildDirectory": "/home/syid/dev/sandbox/kitchen-ga/build",
+    "future": {
+      "v3_fetcherPersist": false,
+      "v3_relativeSplatPath": false,
+      "v3_throwAbortReason": false,
+      "unstable_singleFetch": false
+    },
+    "manifest": false,
+    "publicPath": "/",
+    "routes": {
+      "root": {
+        "path": "",
+        "id": "root",
+        "file": "root.tsx"
+      },
+      "routes/app.shifts.$mode": {
+        "file": "routes/app.shifts.$mode.tsx",
+        "id": "routes/app.shifts.$mode",
+        "path": ":mode",
+        "parentId": "routes/app.shifts"
+      },
+      "routes/app.generator": {
+        "file": "routes/app.generator.tsx",
+        "id": "routes/app.generator",
+        "path": "generator",
+        "parentId": "routes/app"
+      },
+      "routes/app.persons": {
+        "file": "routes/app.persons.tsx",
+        "id": "routes/app.persons",
+        "path": "persons",
+        "parentId": "routes/app"
+      },
+      "routes/app._index": {
+        "file": "routes/app._index.tsx",
+        "id": "routes/app._index",
+        "index": true,
+        "parentId": "routes/app"
+      },
+      "routes/app.report": {
+        "file": "routes/app.report.tsx",
+        "id": "routes/app.report",
+        "path": "report",
+        "parentId": "routes/app"
+      },
+      "routes/app.shifts": {
+        "file": "routes/app.shifts.tsx",
+        "id": "routes/app.shifts",
+        "path": "shifts",
+        "parentId": "routes/app"
+      },
+      "routes/app.tasks": {
+        "file": "routes/app.tasks.tsx",
+        "id": "routes/app.tasks",
+        "path": "tasks",
+        "parentId": "routes/app"
+      },
+      "routes/_index": {
+        "file": "routes/_index.tsx",
+        "id": "routes/_index",
+        "index": true,
+        "parentId": "root"
+      },
+      "routes/logout": {
+        "file": "routes/logout.tsx",
+        "id": "routes/logout",
+        "path": "logout",
+        "parentId": "root"
+      },
+      "routes/print": {
+        "file": "routes/print.tsx",
+        "id": "routes/print",
+        "path": "print",
+        "parentId": "root"
+      },
+      "routes/app": {
+        "file": "routes/app.tsx",
+        "id": "routes/app",
+        "path": "app",
+        "parentId": "root"
+      }
+    },
+    "serverBuildFile": "index.js",
+    "serverModuleFormat": "esm",
+    "ssr": true
+  },
+  "viteConfig": {
+    "build": {
+      "assetsDir": "assets"
+    }
+  }
+}
