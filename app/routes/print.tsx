@@ -2,7 +2,7 @@ import { Stack, Table, Text } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { PersonelNames } from "~/constants/Personel";
 import { ShiftData } from "~/constants/shiftData";
-import { convertToTable } from "~/services/engine/tableGenerator";
+import { convertToTable } from "~/services/engine/TableGenerator";
 import { Individual, Personel, dayName, shiftTaskName } from "~/services/engine/types";
 
 import "~/styles/print.scss";

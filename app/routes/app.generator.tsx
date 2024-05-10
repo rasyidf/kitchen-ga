@@ -4,19 +4,20 @@ import { useEffect, useState } from "react";
 import { ScheduleTable } from "~/components/ScheduleTable";
 import { shiftEntries } from "~/constants/shiftEntries";
 import { PopulationManager } from "~/services/engine/PopulationManager";
-import { GAEngine } from "~/services/engine/ga"; // Import your GA classes
+import { GAEngine } from "~/services/engine/GaEngine"; // Import your GA classes
 import { Individual } from "~/services/engine/types";
 
 const gaEngine = new GAEngine(0.5, 0.1); // Example crossover and mutation rates
 const initialPopulationSize = 100;
 const initialTotalGenerations = 30;
+const shiftSize = 11;
 const populationManager = new PopulationManager(
   shiftEntries,
   3,
   gaEngine
 );
 
-populationManager.initializePopulation(initialPopulationSize, 6);
+populationManager.initializePopulation(initialPopulationSize, shiftSize);
 
 const MyGAScheduler = () => {
   const [population, setPopulation] = useState<Individual[]>(populationManager.population);
@@ -62,7 +63,7 @@ const MyGAScheduler = () => {
   const handleReset = () => {
     setIsRunning(false);
     setGeneration(0);
-    populationManager.initializePopulation(populationSize, 6);
+    populationManager.initializePopulation(populationSize, shiftSize);
     setPopulation(populationManager.population);
   };
 
@@ -99,7 +100,6 @@ const MyGAScheduler = () => {
 
     <Paper mt={8} withBorder>
       <ScheduleTable population={population} />
-
     </Paper>
     <Text p="xs">Generasi: {generation}</Text>
   </>
